@@ -18,8 +18,6 @@ def getInfo(coin):
     session.headers.update(headers)
     response = session.get(url, params=parameters)
     pprint(response.json())
-    with open('text.json', 'w') as file:
-        json.dump(response.json(), file, indent=4, ensure_ascii=False)
 
     return response.json()
 
