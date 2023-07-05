@@ -3,7 +3,7 @@ import logging
 
 
 from aiogram import Bot, Dispatcher, types, executor
-from API_CMC import id_coin, getInfo
+from api_cmc import id_coin, getInfo
 from config import TOKEN_API
 
 
