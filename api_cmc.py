@@ -4,7 +4,7 @@ import requests
 from requests import Request, Session
 import json
 
-def getInfo(coin, id_coin):
+def getInfo(coin):
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
     api = 'eeea1287-dbda-47da-86ec-ca580fe74b3b'
     parameters = {'slug': f'{coin}',
@@ -17,27 +17,11 @@ def getInfo(coin, id_coin):
     session = Session()
     session.headers.update(headers)
     response = session.get(url, params=parameters)
+    pprint(response.json())
     with open('text.json', 'w') as file:
         json.dump(response.json(), file, indent=4, ensure_ascii=False)
 
-    price = json.loads(response.text)['data'][f'{id_coin[coin]}']['quote']['USD']['price']
-    # date_added = json.loads(response.text)['data'][f'{id_coin[coin]}']['date_added']
-    # circulating_supply = json.loads(response.text)['data'][f'{id_coin[coin]}']['circulating_supply']
-    # name = json.loads(response.text)['data'][f'{id_coin[coin]}']['name']
-    # symbol_network = json.loads(response.text)['data'][f'{id_coin[coin]}']['platform']['name']
-    # percent_change_24h = json.loads(response.text)['data'][f'{id_coin[coin]}']['quote']['USD']['percent_change_24h']
-    # volume_24h = json.loads(response.text)['data'][f'{id_coin[coin]}']['quote']['USD']['volume_24h']
-    # market_cap = json.loads(response.text)['data'][f'{id_coin[coin]}']['quote']['USD']['market_cap']
-    # info_result = [price, date_added, circulating_supply, name, symbol_network, percent_change_24h, volume_24h, market_cap]
-    # print('Цена: ', price)
-    # print('Дата добавления монеты: ', date_added)
-    # print('Кол-во монет: ', circulating_supply)
-    # print('Название монеты: ', name)
-    # print('Сеть: ', symbol_network)
-    # print('Рыночная капитализация', market_cap)
-    # print('Изменение цены за 24 часа: ', percent_change_24h)
-    # print('Объем торгов за последнии 24 часа: ', volume_24h)
-
+    return response.json()
 
 
 id_coin = {
@@ -63,4 +47,4 @@ id_coin = {
     'binance-usd': 4687
 }
 
-# getInfo('shiba-inu', id_coin)
+
