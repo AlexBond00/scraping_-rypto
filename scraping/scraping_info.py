@@ -41,15 +41,4 @@ def market_cap_coin(coin):
 
 
 
-# print(price('bitcoin'))
-
-
-
-
-#
-# date_added = all_info['data'][f'{id_coin[call.data]}']['date_added']
-# circulating_supply = all_info['data'][f'{id_coin[call.data]}']['circulating_supply']
-# percent_change_24h = all_info['data'][f'{id_coin[call.data]}']['quote']['USD']['percent_change_24h']
-# volume_24h = all_info['data'][f'{id_coin[call.data]}']['quote']['USD']['volume_24h']
-# market_cap = all_info['data'][f'{id_coin[call.data]}']['quote']['USD']['market_cap']
 
