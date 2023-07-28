@@ -1,12 +1,9 @@
-from pprint import pprint
+from requests import Session
+from config import api
 
-import requests
-from requests import Request, Session
-import json
 
 def getInfo(coin):
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
-    api = 'eeea1287-dbda-47da-86ec-ca580fe74b3b'
     parameters = {'slug': f'{coin}',
                   'convert': 'USD'}
     headers = {
@@ -17,8 +14,6 @@ def getInfo(coin):
     session = Session()
     session.headers.update(headers)
     response = session.get(url, params=parameters)
-    pprint(response.json())
-
     return response.json()
 
 
