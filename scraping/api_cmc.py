@@ -2,6 +2,9 @@ from config import api
 from requests import Session
 
 
+session = Session()
+
+
 def getInfo(coin):
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
     parameters = {'slug': f'{coin}',
@@ -11,12 +14,14 @@ def getInfo(coin):
         'X-CMC_PRO_API_KEY': api
     }
 
-    session = Session()
     session.headers.update(headers)
     response = session.get(url, params=parameters)
 
 
     return response.json()
+
+
+session.close()
 
 
 id_coin = {
