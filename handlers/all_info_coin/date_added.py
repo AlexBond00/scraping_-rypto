@@ -5,7 +5,8 @@ from scraping.scraping_info import date_added_coin
 
 async def date_added(call: types.CallbackQuery, state: FSMContext):
     data = await state.get_data()
-    await call.message.answer(date_added_coin(data["coin"]))
+    added_data = await date_added_coin(data["coin"])
+    await call.message.answer(added_data)
 
 
 def register_date_added(dp: Dispatcher):

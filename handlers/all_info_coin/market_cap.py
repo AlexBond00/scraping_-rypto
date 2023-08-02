@@ -5,7 +5,8 @@ from scraping.scraping_info import market_cap_coin
 
 async def market_cap(call: types.CallbackQuery, state: FSMContext):
     data = await state.get_data()
-    await call.message.answer(market_cap_coin(data["coin"]))
+    market = await market_cap_coin((data["coin"]))
+    await call.message.answer(market)
 
 
 def register_market_cap(dp: Dispatcher):

@@ -1,12 +1,13 @@
 from aiogram import types, Dispatcher
 from aiogram.dispatcher.storage import FSMContext
+# from scraping.scraping_info import price_coin
 from scraping.scraping_info import price_coin
 
 
 async def price(call: types.CallbackQuery, state: FSMContext):
     data = await state.get_data()
-    print(data)
-    await call.message.answer(price_coin(data["coin"]))
+    coin_price = await price_coin(data["coin"])
+    await call.message.answer(coin_price)
 
 
 def register_price(dp: Dispatcher):
