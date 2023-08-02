@@ -1,27 +1,51 @@
 from config import api
-from requests import Session
+import aiohttp
+import asyncio
+
+#
+# session = Session()
+#
+#
+# def getInfo(coin):
+#     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
+#     parameters = {'slug': f'{coin}',
+#                   'convert': 'USD'}
+#     headers = {
+#         'Accepts': 'application/json',
+#         'X-CMC_PRO_API_KEY': api
+#     }
+#
+#     session.headers.update(headers)
+#     response = session.get(url, params=parameters)
+#
+#
+#     return response.json()
+#
+#
+# session.close()
 
 
-session = Session()
+
+# session = aiohttp.ClientSession()
+
+# coin = "bitcoin"
 
 
-def getInfo(coin):
+
+async def getInfo(coin):
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
-    parameters = {'slug': f'{coin}',
+    parameters = {'slug': f"{coin}",
                   'convert': 'USD'}
     headers = {
         'Accepts': 'application/json',
         'X-CMC_PRO_API_KEY': api
     }
-
-    session.headers.update(headers)
-    response = session.get(url, params=parameters)
-
-
-    return response.json()
+    session = aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False))
+    async with session.get(url=url, params=parameters, headers=headers) as response:
+        result = await response.json()
+    return result
 
 
-session.close()
 
 
 id_coin = {
@@ -46,5 +70,26 @@ id_coin = {
     'shiba-inu': 5994,
     'binance-usd': 4687
 }
+
+
+#
+# print(asyncio.run(getInfo(coin))['data'][f'{id_coin[coin]}']['quote']['USD']['price'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

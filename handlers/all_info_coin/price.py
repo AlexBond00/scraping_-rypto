@@ -5,6 +5,7 @@ from scraping.scraping_info import price_coin
 
 async def price(call: types.CallbackQuery, state: FSMContext):
     data = await state.get_data()
+    print(data)
     await call.message.answer(price_coin(data["coin"]))
 
 
