@@ -1,6 +1,5 @@
 from aiogram import Dispatcher
-from handlers.all_info_coin import *
-
+from handlers.handlers_coin.all_info_coin import *
 
 
 def register_all_info(dp: Dispatcher):
@@ -11,3 +10,4 @@ def register_all_info(dp: Dispatcher):
     register_percent_change(dp)
     register_circulating_supply(dp)
     register_back(dp)
+

@@ -1,6 +1,6 @@
 import asyncio
 from scraping.api_cmc import getInfo, id_coin
-# from scraping.api_cmc import info_fanc
+
 
 
 async def price_coin(coin):
@@ -37,7 +37,7 @@ async def volume_24h(coin):
 async def market_cap_coin(coin):
     info_func = await getInfo(coin)
     name = info_func['data'][f'{id_coin[coin]}']['name']
-    market_cap = info_func['data'][f'{id_coin[coin]}']['quote']['USD']['market_cap']
+    market_cap = asyncio.run(getInfo(coin))['data'][f'{id_coin[coin]}']['quote']['USD']['market_cap']
     return f'Капитализация {name}: {round(market_cap, 2)} USD.'
 
 
